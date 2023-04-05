@@ -18,6 +18,7 @@ if (module.hot) {
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1); // получаем хэш нужного рецепта, начиная с 1го символа (после #....)
+    // console.log(id);
 
     if (!id) return; // Предохранитель: если нет id
     recipeView.renderSpinner(); // Крутилка загрузки
@@ -33,6 +34,7 @@ const controlRecipes = async function () {
 
     //3) Rendering recipe
     recipeView.render(model.state.recipe); // (model.state.recipe)- данные полученные из шага 1 и передаём в метод render(), который берёт эти данные и записывает их в this.#data в файле recipeView.js, и потом мы можем везде использовать эти данные внутри этого объекта
+    // const recipeView = new recipeView(model.state.recipe);
   } catch (err) {
     recipeView.renderError();
     console.error(err);
@@ -53,7 +55,7 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     // 3) Отображаем Результаты поиска
-
+    // resultsView.render(model.state.search.results);
     resultsView.render(model.getSearchResultsPage()); // render переписывает всё своё содержимое и помещает новый контент на это место
 
     // 4) Отобразить начальные кнопки страниц
